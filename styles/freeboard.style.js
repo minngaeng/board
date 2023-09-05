@@ -10,7 +10,7 @@ export const Freeboard = styled.div`
   align-items: center;
 `;
 
-export const FreeboardTitle = styled.h2`
+export const FreeboardTitle = styled.h1`
   text-align: center;
   padding: 1.5rem 0;
 `;
@@ -18,6 +18,7 @@ export const FreeboardTitle = styled.h2`
 export const WriterInput = styled.input`
   margin-top: 0.8rem;
   height: 2rem;
+  padding-left: 0.5rem;
 `;
 
 export const WriterWrapper = styled.div`
@@ -83,6 +84,8 @@ export const PostCodeSearchBox = styled.div`
 export const SearchBtn = styled.button`
   height: 2.4rem;
   background-color: pink;
+
+  width: 40%;
   /* border: none; */
 `;
 
@@ -102,4 +105,8 @@ export const FinalButton = styled.button`
   width: 30%;
   height: 2rem;
   margin: 2rem 0;
+`;
+
+export const ErrorMessage = styled.p`
+  color: red;
 `;

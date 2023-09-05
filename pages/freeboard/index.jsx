@@ -1,26 +1,108 @@
+import { useState } from 'react';
 import * as S from '../../styles/freeboard.style';
 
 export default function freeboard() {
+  const [writer, setWriter] = useState('');
+  const [password, setPassword] = useState('');
+  const [title, setTitle] = useState('');
+  const [contents, setContetns] = useState('');
+
+  const [writerError, setWriterError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [titleError, setTitleError] = useState('');
+  const [contentsError, setContentsError] = useState('');
+
+  const onChangeWriter = (event) => {
+    setWriter(event.currentTarget.value);
+
+    if (event.currentTarget.value !== '') {
+      setWriterError('');
+    }
+  };
+
+  const onChangePassword = (event) => {
+    setPassword(event.currentTarget.value);
+
+    if (event.currentTarget.value !== '') {
+      setPasswordError('');
+    }
+  };
+
+  const onChangeTitle = (event) => {
+    setTitle(event.currentTarget.value);
+
+    if (event.currentTarget.value !== '') {
+      setTitleError('');
+    }
+  };
+
+  const onChangeContents = (event) => {
+    setContetns(event.currentTarget.value);
+
+    if (event.currentTarget.value !== '') {
+      setContentsError('');
+    }
+  };
+
+  const onClickSubmit = () => {
+    if (!writer) {
+      setWriterError('작성자를 입력해주세요.');
+    }
+    if (!password) {
+      setPasswordError('비밀번호를 입력해주세요.');
+    }
+    if (!title) {
+      setTitleError('제목을 입력해주세요.');
+    }
+    if (!contents) {
+      setContentsError('내용을 입력해주세요.');
+    }
+    if (writer && password && title && contents) {
+      alert('게시물 등록이 완료되었습니다.');
+    }
+  };
+
   return (
     <S.Freeboard>
       <S.FreeboardTitle>게시물 등록</S.FreeboardTitle>
       <S.WriterPWBox>
         <S.WriterWrapper>
           <label>작성자</label>
-          <S.WriterInput placeholder="작성자를 입력해주세요." />
+          <S.WriterInput
+            onChange={onChangeWriter}
+            value={writer}
+            placeholder="작성자를 입력해주세요."
+          />
+          <S.ErrorMessage>{writerError}</S.ErrorMessage>
         </S.WriterWrapper>
         <S.PWWrapper>
           <label>비밀번호</label>
-          <S.PWInput placeholder="비밀번호를 입력해주세요." />
+          <S.PWInput
+            onChange={onChangePassword}
+            value={password}
+            placeholder="비밀번호를 입력해주세요."
+          />
+          <S.ErrorMessage>{passwordError}</S.ErrorMessage>
         </S.PWWrapper>
       </S.WriterPWBox>
       <S.TitleWrapper>
         <label>제목</label>
-        <S.Title placeholder="제목을 입력해주세요." />
+        <S.Title
+          value={title}
+          onChange={onChangeTitle}
+          type="text"
+          placeholder="제목을 입력해주세요."
+        />
+        <S.ErrorMessage>{titleError}</S.ErrorMessage>
       </S.TitleWrapper>
       <S.ContentsWrapper>
         <label>내용</label>
-        <S.Contents placeholder="내용을 입력해주세요." />
+        <S.Contents
+          onChange={onChangeContents}
+          value={contents}
+          placeholder="내용을 입력해주세요."
+        />
+        <S.ErrorMessage>{contentsError}</S.ErrorMessage>
       </S.ContentsWrapper>
       <S.AddressWrapper>
         <label>주소</label>
@@ -35,7 +117,7 @@ export default function freeboard() {
         <label>유튜브</label>
         <S.Youtube />
       </S.YoutubeWrapper>
-      <S.FinalButton>등록하기</S.FinalButton>
+      <S.FinalButton onClick={onClickSubmit}>등록하기</S.FinalButton>
       {/* <label>사진 첨부</label> */}
     </S.Freeboard>
   );
