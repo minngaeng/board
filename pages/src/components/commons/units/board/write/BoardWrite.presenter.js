@@ -9,7 +9,7 @@ export default function BoardWriteUI(props) {
           <label>작성자</label>
           <S.WriterInput
             onChange={props.onChangeWriter}
-            value={writer}
+            value={props.writer}
             placeholder="작성자를 입력해주세요."
           />
           <S.ErrorMessage>{props.writerError}</S.ErrorMessage>
@@ -18,7 +18,7 @@ export default function BoardWriteUI(props) {
           <label>비밀번호</label>
           <S.PWInput
             onChange={props.onChangePassword}
-            value={password}
+            value={props.password}
             placeholder="비밀번호를 입력해주세요."
           />
           <S.ErrorMessage>{props.passwordError}</S.ErrorMessage>
@@ -27,8 +27,8 @@ export default function BoardWriteUI(props) {
       <S.TitleWrapper>
         <label>제목</label>
         <S.Title
-          value={title}
-          onChange={onChangeTitle}
+          value={props.title}
+          onChange={props.onChangeTitle}
           type="text"
           placeholder="제목을 입력해주세요."
         />
@@ -38,7 +38,7 @@ export default function BoardWriteUI(props) {
         <label>내용</label>
         <S.Contents
           onChange={props.onChangeContents}
-          value={contents}
+          value={props.contents}
           placeholder="내용을 입력해주세요."
         />
         <S.ErrorMessage>{props.contentsError}</S.ErrorMessage>

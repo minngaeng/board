@@ -94,6 +94,10 @@ export default function BoardWrite() {
       titleError={titleError}
       contentsError={contentsError}
       onClickSubmit={onClickSubmit}
+      writer={writer}
+      password={password}
+      title={title}
+      contents={contents}
     />
   );
 }
