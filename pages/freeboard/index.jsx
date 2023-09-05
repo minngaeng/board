@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import * as S from '../../styles/freeboard.style';
+import { gql } from '@apollo/client';
 
 export default function freeboard() {
   const [writer, setWriter] = useState('');
