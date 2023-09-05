@@ -9,7 +9,7 @@ export default function BoardListUI(props) {
         <S.BoardListHeadWriter>작성자</S.BoardListHeadWriter>
         <S.BoardListHeadDate>날짜</S.BoardListHeadDate>
         {props.data?.fetchBoards.map((el) => (
-          <tr>
+          <tr id={el._id} onClick={props.onClickMoveDetail}>
             <S.BoardListContents>
               {el._id.slice(-4).toUpperCase()}
             </S.BoardListContents>
@@ -21,6 +21,14 @@ export default function BoardListUI(props) {
           </tr>
         ))}
       </S.BoardListTable>
+      <div>
+        <button onClick={props.onClickMoveBoardNew}>
+          <S.PencilImage>
+            <img src="/image/pencil.png" />
+          </S.PencilImage>
+          <span>새글 등록하기</span>
+        </button>
+      </div>
     </S.BoardListUI>
   );
 }

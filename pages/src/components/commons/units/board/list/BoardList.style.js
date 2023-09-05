@@ -35,3 +35,7 @@ export const BoardListContents = styled.td`
     color: blue;
   }
 `;
+
+export const PencilImage = styled.div`
+  display: inline;
+`;

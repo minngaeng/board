@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const FETCO_BOARDS = gql`
+export const FETCH_BOARDS = gql`
   query {
     fetchBoards {
       _id
