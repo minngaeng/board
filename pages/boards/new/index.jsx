@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import * as S from '../../styles/freeboard.style';
 import { gql, useMutation } from '@apollo/client';
+import { useRouter } from 'next/router';
 
 const CREATE_BOARD = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!) {
@@ -11,6 +12,8 @@ const CREATE_BOARD = gql`
 `;
 
 export default function freeboard() {
+  const router = useRouter();
+
   const [createBoard] = useMutation(CREATE_BOARD);
 
   const [writer, setWriter] = useState('');
@@ -56,30 +59,35 @@ export default function freeboard() {
   };
 
   const onClickSubmit = async () => {
-    if (!writer) {
-      setWriterError('작성자를 입력해주세요.');
-    }
-    if (!password) {
-      setPasswordError('비밀번호를 입력해주세요.');
-    }
-    if (!title) {
-      setTitleError('제목을 입력해주세요.');
-    }
-    if (!contents) {
-      setContentsError('내용을 입력해주세요.');
-    }
-    if (writer && password && title && contents) {
-      const result = await createBoard({
-        variables: {
-          createBoardInput: {
-            writer,
-            password,
-            title,
-            contents,
+    try {
+      if (!writer) {
+        setWriterError('작성자를 입력해주세요.');
+      }
+      if (!password) {
+        setPasswordError('비밀번호를 입력해주세요.');
+      }
+      if (!title) {
+        setTitleError('제목을 입력해주세요.');
+      }
+      if (!contents) {
+        setContentsError('내용을 입력해주세요.');
+      }
+      if (writer && password && title && contents) {
+        const result = await createBoard({
+          variables: {
+            createBoardInput: {
+              writer,
+              password,
+              title,
+              contents,
+            },
           },
-        },
-      });
-      console.log(result);
+        });
+        console.log(result);
+        router.push(`/boards/${result.data?.createBoard._id}`);
+      }
+    } catch (error) {
+      alert(error.message);
     }
   };
 
