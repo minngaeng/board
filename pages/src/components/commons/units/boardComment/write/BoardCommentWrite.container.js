@@ -46,6 +46,8 @@ export default function BoardCommentWrite() {
           },
         ],
       });
+      setWriter('');
+      setContents('');
     } catch (error) {
       alert(error.message);
     }
@@ -57,6 +59,8 @@ export default function BoardCommentWrite() {
       onChangePassword={onChangePassword}
       onChangeContents={onChangeContents}
       onClickPostComment={onClickPostComment}
+      contents={contents}
+      writer={writer}
     />
   );
 }
