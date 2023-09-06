@@ -6,6 +6,7 @@ import BoardWriteUI from './BoardWrite.presenter';
 
 export default function BoardWrite() {
   const router = useRouter();
+  const [isActive, setIsActive] = useState(false);
 
   const [createBoard] = useMutation(CREATE_BOARD);
 
@@ -25,6 +26,12 @@ export default function BoardWrite() {
     if (event.currentTarget.value !== '') {
       setWriterError('');
     }
+
+    if (event.currentTarget.value && password && title && contents) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   };
 
   const onChangePassword = (event) => {
@@ -32,6 +39,12 @@ export default function BoardWrite() {
 
     if (event.currentTarget.value !== '') {
       setPasswordError('');
+    }
+
+    if (writer && event.currentTarget.value && title && contents) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
     }
   };
 
@@ -41,6 +54,12 @@ export default function BoardWrite() {
     if (event.currentTarget.value !== '') {
       setTitleError('');
     }
+
+    if (writer && password && event.currentTarget.value && contents) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   };
 
   const onChangeContents = (event) => {
@@ -48,6 +67,12 @@ export default function BoardWrite() {
 
     if (event.currentTarget.value !== '') {
       setContentsError('');
+    }
+
+    if (writer && password && title && event.currentTarget.value) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
     }
   };
 
@@ -98,6 +123,7 @@ export default function BoardWrite() {
       password={password}
       title={title}
       contents={contents}
+      isActive={isActive}
     />
   );
 }

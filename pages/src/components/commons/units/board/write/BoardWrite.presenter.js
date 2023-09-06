@@ -1,6 +1,7 @@
 import * as S from './BoardWrite.style';
 
 export default function BoardWriteUI(props) {
+  console.log(props.isActive);
   return (
     <S.Freeboard>
       <S.FreeboardTitle>게시물 등록</S.FreeboardTitle>
@@ -56,7 +57,9 @@ export default function BoardWriteUI(props) {
         <label>유튜브</label>
         <S.Youtube />
       </S.YoutubeWrapper>
-      <S.FinalButton onClick={props.onClickSubmit}>등록하기</S.FinalButton>
+      <S.FinalButton isActive={props.isActive} onClick={props.onClickSubmit}>
+        등록하기
+      </S.FinalButton>
       {/* <label>사진 첨부</label> */}
     </S.Freeboard>
   );

@@ -105,6 +105,8 @@ export const FinalButton = styled.button`
   width: 30%;
   height: 2rem;
   margin: 2rem 0;
+
+  background-color: ${(props) => (props.isActive ? 'red' : '')};
 `;
 
 export const ErrorMessage = styled.p`
