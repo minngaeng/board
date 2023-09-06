@@ -9,6 +9,7 @@ export default function BoardDetailUI(props) {
 
       <S.Title>제목:{props.data?.fetchBoard?.title}</S.Title>
       <p>내용:{props.data?.fetchBoard?.contents}</p>
+      <button onClick={props.onClickEdit}>수정하러가기</button>
     </S.Detail>
   );
 }

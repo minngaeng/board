@@ -1,14 +1,17 @@
 import { useRouter } from 'next/router';
 import { useMutation } from '@apollo/client';
-import { CREATE_BOARD } from './BoardWrite.queries';
+import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries';
 import { useState } from 'react';
 import BoardWriteUI from './BoardWrite.presenter';
 
-export default function BoardWrite() {
+export default function BoardWrite(props) {
+  console.log(props.data);
+
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
 
   const [createBoard] = useMutation(CREATE_BOARD);
+  const [updateBoard] = useMutation(UPDATE_BOARD);
 
   const [writer, setWriter] = useState('');
   const [password, setPassword] = useState('');
@@ -108,6 +111,21 @@ export default function BoardWrite() {
       alert(error.message);
     }
   };
+  const onClickEdit = async () => {
+    const updateBoardInput = {};
+    if (title) updateBoardInput.title = title;
+    if (contents) updateBoardInput.contents = contents;
+
+    const result = await updateBoard({
+      variables: {
+        updateBoardInput,
+        boardId: router.query.boardId,
+        password,
+      },
+    });
+    router.push(`/boards/${router.query.boardId}`);
+  };
+
   return (
     <BoardWriteUI
       onChangeWriter={onChangeWriter}
@@ -124,6 +142,9 @@ export default function BoardWrite() {
       title={title}
       contents={contents}
       isActive={isActive}
+      isEdit={props.isEdit}
+      onClickEdit={onClickEdit}
+      data={props.data}
     />
   );
 }
