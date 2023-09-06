@@ -5,8 +5,6 @@ import { useState } from 'react';
 import BoardWriteUI from './BoardWrite.presenter';
 
 export default function BoardWrite(props) {
-  console.log(props.data);
-
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
 

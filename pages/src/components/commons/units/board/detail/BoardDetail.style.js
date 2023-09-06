@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
 export const Detail = styled.div`
-  border: 1px solid black;
   margin: 0 auto;
   width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: blanchedalmond;
 `;
 
 export const Profile = styled.div`
@@ -15,6 +15,8 @@ export const Profile = styled.div`
   margin: 2rem 0;
 `;
 
-export const Title = styled.h2`
-  text-align: left;
+export const Writer = styled.p`
+  font-size: 1.5rem;
 `;
+
+export const Title = styled.h2``;
