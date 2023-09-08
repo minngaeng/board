@@ -1,6 +1,16 @@
+import { ChangeEvent } from 'react';
 import * as S from './BoardCommentWrite.style';
 
-export default function BoardCommentWriteUI(props) {
+interface IBoardCommentWriiteUIProps {
+  onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClickPostComment: () => void;
+  contents: string;
+  writer: string;
+}
+
+export default function BoardCommentWriteUI(props: IBoardCommentWriiteUIProps) {
   return (
     <S.BoardCommentWriteUI>
       <S.Header>

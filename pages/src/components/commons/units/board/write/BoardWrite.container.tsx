@@ -3,6 +3,11 @@ import { useMutation } from '@apollo/client';
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries';
 import { ChangeEvent, useState } from 'react';
 import BoardWriteUI from './BoardWrite.presenter';
+import {
+  IMutation,
+  IMutationCreateBoardArgs,
+  IMutationUpdateBoardArgs,
+} from '../../../../../../../src/commons/types/generated/types';
 
 interface IBoardWriteProps {
   isEdit: boolean;
@@ -18,8 +23,14 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
 
-  const [createBoard] = useMutation(CREATE_BOARD);
-  const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [createBoard] = useMutation<
+    Pick<IMutation, 'createBoard'>,
+    IMutationCreateBoardArgs
+  >(CREATE_BOARD);
+  const [updateBoard] = useMutation<
+    Pick<IMutation, 'updateBoard'>,
+    IMutationUpdateBoardArgs
+  >(UPDATE_BOARD);
 
   const [writer, setWriter] = useState('');
   const [password, setPassword] = useState('');
@@ -120,6 +131,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
   const onClickEdit = async (): Promise<void> => {
+    if (typeof router.query.boardId !== 'string') {
+      return;
+    }
+
     const updateBoardInput: IUpdateBoardInputProps = {};
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;

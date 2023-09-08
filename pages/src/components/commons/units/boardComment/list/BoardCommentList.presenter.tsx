@@ -1,6 +1,13 @@
+import { MouseEvent } from 'react';
+import { IQuery } from '../../../../../../../src/commons/types/generated/types';
 import * as S from './BoardCommentList.style';
 
-export default function BoardCommentListUI(props) {
+interface IBoardCommentListUIProps {
+  data?: Pick<IQuery, 'fetchBoardComments'>;
+  onClickDelete: (event: MouseEvent<HTMLButtonElement>) => void;
+}
+
+export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
   return (
     <S.BoardCommentListUI>
       {props.data?.fetchBoardComments.map((el) => (

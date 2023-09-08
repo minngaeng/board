@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import BoardCommentWriteUI from './BoardCommentWrite.presenter';
 import { CREATE_BOARD_COMMENT } from './BoardCommentWrite.queries';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import { FETCH_BOARD_COMMENTS } from '../list/BoardCommentList.queries';
 
@@ -14,20 +14,19 @@ export default function BoardCommentWrite() {
   const [password, setPassword] = useState('');
   const [contents, setContents] = useState('');
 
-  const onChangeWriter = (event) => {
+  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.currentTarget.value);
   };
 
-  const onChangePassword = (event) => {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.currentTarget.value);
   };
 
-  const onChangeContents = (event) => {
+  const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
     setContents(event.currentTarget.value);
   };
 
   const onClickPostComment = async () => {
-    console.log(1);
     try {
       const result = await createBoardComment({
         variables: {
@@ -49,7 +48,7 @@ export default function BoardCommentWrite() {
       setWriter('');
       setContents('');
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 
