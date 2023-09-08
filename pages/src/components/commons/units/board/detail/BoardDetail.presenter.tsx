@@ -1,10 +1,5 @@
-import { IQuery } from '../../../../../../../src/commons/types/generated/types';
 import * as S from './BoardDetail.style';
-
-interface IBoardDetailUIProps {
-  data?: Pick<IQuery, 'fetchBoard'>;
-  onClickEdit: () => void;
-}
+import { IBoardDetailUIProps } from './BoardDetail.types';
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (

@@ -1,14 +1,5 @@
-import { ChangeEvent } from 'react';
 import * as S from './BoardCommentWrite.style';
-
-interface IBoardCommentWriiteUIProps {
-  onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeContents: (event: ChangeEvent<HTMLInputElement>) => void;
-  onClickPostComment: () => void;
-  contents: string;
-  writer: string;
-}
+import { IBoardCommentWriiteUIProps } from './BoardCommentWrite.types';
 
 export default function BoardCommentWriteUI(props: IBoardCommentWriiteUIProps) {
   return (

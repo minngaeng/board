@@ -1,12 +1,5 @@
-import { MouseEvent } from 'react';
 import * as S from './BoardList.style';
-import { IQuery } from '../../../../../../../src/commons/types/generated/types';
-
-interface IBOARDLISTUIProps {
-  data?: Pick<IQuery, 'fetchBoards'>;
-  onClickMoveDetail: (event: MouseEvent<HTMLTableRowElement>) => void;
-  onClickMoveBoardNew: () => void;
-}
+import { IBOARDLISTUIProps } from './BoardList.types';
 
 export default function BoardListUI(props: IBOARDLISTUIProps): JSX.Element {
   return (

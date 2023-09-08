@@ -8,16 +8,9 @@ import {
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
 } from '../../../../../../../src/commons/types/generated/types';
+import { IBoardWriteProps, IUpdateBoardInputProps } from './BoardWrite.types';
 
-interface IBoardWriteProps {
-  isEdit: boolean;
-  data?: any;
-}
 
-interface IUpdateBoardInputProps {
-  title?: string;
-  contents?: string;
-}
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
