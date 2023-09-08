@@ -1,6 +1,11 @@
 import * as S from './BoardDetail.style';
 
-export default function BoardDetailUI(props) {
+interface IBoardDetailUIProps {
+  data: any;
+  onClickEdit: () => void;
+}
+
+export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
     <S.Detail>
       <S.Profile>

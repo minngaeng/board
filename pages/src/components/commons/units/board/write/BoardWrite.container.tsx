@@ -1,10 +1,20 @@
 import { useRouter } from 'next/router';
 import { useMutation } from '@apollo/client';
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import BoardWriteUI from './BoardWrite.presenter';
 
-export default function BoardWrite(props) {
+interface IBoardWriteProps {
+  isEdit: boolean;
+  data?: any;
+}
+
+interface IUpdateBoardInputProps {
+  title?: string;
+  contents?: string;
+}
+
+export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
 
@@ -21,7 +31,7 @@ export default function BoardWrite(props) {
   const [titleError, setTitleError] = useState('');
   const [contentsError, setContentsError] = useState('');
 
-  const onChangeWriter = (event) => {
+  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.currentTarget.value);
 
     if (event.currentTarget.value !== '') {
@@ -35,7 +45,7 @@ export default function BoardWrite(props) {
     }
   };
 
-  const onChangePassword = (event) => {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.currentTarget.value);
 
     if (event.currentTarget.value !== '') {
@@ -49,7 +59,7 @@ export default function BoardWrite(props) {
     }
   };
 
-  const onChangeTitle = (event) => {
+  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.currentTarget.value);
 
     if (event.currentTarget.value !== '') {
@@ -63,7 +73,7 @@ export default function BoardWrite(props) {
     }
   };
 
-  const onChangeContents = (event) => {
+  const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
     setContetns(event.currentTarget.value);
 
     if (event.currentTarget.value !== '') {
@@ -77,7 +87,7 @@ export default function BoardWrite(props) {
     }
   };
 
-  const onClickSubmit = async () => {
+  const onClickSubmit = async (): Promise<void> => {
     try {
       if (!writer) {
         setWriterError('작성자를 입력해주세요.');
@@ -106,11 +116,11 @@ export default function BoardWrite(props) {
         router.push(`/boards/${result.data?.createBoard._id}`);
       }
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
-  const onClickEdit = async () => {
-    const updateBoardInput = {};
+  const onClickEdit = async (): Promise<void> => {
+    const updateBoardInput: IUpdateBoardInputProps = {};
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
 

@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+interface IFinalButtonProps {
+  isActive: boolean;
+}
+
 export const Freeboard = styled.div`
   margin: 0 auto;
   border: 1px solid black;
@@ -101,7 +105,7 @@ export const Youtube = styled.input`
 
 export const YoutubeWrapper = styled(AddressWrapper)``;
 
-export const FinalButton = styled.button`
+export const FinalButton = styled.button<IFinalButtonProps>`
   width: 30%;
   height: 2rem;
   margin: 2rem 0;

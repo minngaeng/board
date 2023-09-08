@@ -1,6 +1,14 @@
+import { MouseEvent } from 'react';
 import * as S from './BoardList.style';
 
-export default function BoardListUI(props) {
+interface IBOARDLISTUIProps {
+  data: any;
+  // onClickMoveDetail: (event: MouseEvent<HTMLTableRowElement>) => void;
+  onClickMoveDetail:(event:MouseEvent<HTMLTableRowElement>)=>void
+  onClickMoveBoardNew: () => void;
+}
+
+export default function BoardListUI(props: IBOARDLISTUIProps): JSX.Element {
   return (
     <S.BoardListUI>
       <S.BoardListTable>
