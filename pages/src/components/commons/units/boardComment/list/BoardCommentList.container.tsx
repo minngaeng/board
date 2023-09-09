@@ -16,7 +16,7 @@ import { MouseEvent } from 'react';
 export default function BoardCommentList() {
   const router = useRouter();
   if (typeof router.query.boardId !== 'string') {
-    return;
+    return null;
   }
 
   const [deleteBoardComment] = useMutation<

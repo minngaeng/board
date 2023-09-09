@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import BoardWrite from '../../../../pages/src/components/commons/units/board/write/BoardWrite.container';
+import BoardWrite from '../../../src/components/commons/units/board/write/BoardWrite.container';
 import { useRouter } from 'next/router';
 
 const FETCH_BOARD = gql`
