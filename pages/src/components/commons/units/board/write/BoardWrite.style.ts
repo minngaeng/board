@@ -16,13 +16,7 @@ export const Freeboard = styled.div`
 
 export const FreeboardTitle = styled.h1`
   text-align: center;
-  padding: 1.5rem 0;
-`;
-
-export const WriterInput = styled.input`
-  margin-top: 0.8rem;
-  height: 2rem;
-  padding-left: 0.5rem;
+  padding: 3rem 0;
 `;
 
 export const WriterWrapper = styled.div`
@@ -31,9 +25,16 @@ export const WriterWrapper = styled.div`
   width: 45%;
 `;
 
+export const WriterInput = styled.input`
+  margin-top: 0.8rem;
+  height: 2.5rem;
+  padding-left: 0.5rem;
+`;
+
 export const PWInput = styled.input`
   margin-top: 0.8rem;
-  height: 2rem;
+  height: 2.5rem;
+  padding-left: 0.5rem;
 `;
 
 export const PWWrapper = styled(WriterWrapper)``;
@@ -47,7 +48,7 @@ export const WriterPWBox = styled.div`
 export const Title = styled.input`
   /* width: inherit; */
   margin-top: 0.8rem;
-  height: 2.5rem;
+  height: 3rem;
   padding-left: 0.5rem;
 `;
 
@@ -87,10 +88,15 @@ export const PostCodeSearchBox = styled.div`
 
 export const SearchBtn = styled.button`
   height: 2.4rem;
-  background-color: pink;
-
+  background-color: #e2e2e2;
   width: 40%;
-  /* border: none; */
+  border: none;
+  color: black;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #cecece;
+  }
 `;
 
 export const Address = styled.input`
@@ -107,10 +113,12 @@ export const YoutubeWrapper = styled(AddressWrapper)``;
 
 export const FinalButton = styled.button<IFinalButtonProps>`
   width: 30%;
-  height: 2rem;
+  height: 3rem;
   margin: 2rem 0;
+  border: none;
+  cursor: pointer;
 
-  background-color: ${(props) => (props.isActive ? 'red' : '')};
+  background-color: ${(props) => (props.isActive ? '#cecece' : '#e2e2e2')};
 `;
 
 export const ErrorMessage = styled.p`

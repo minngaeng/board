@@ -10,7 +10,7 @@ export default function BoardListUI(props: IBOARDLISTUIProps): JSX.Element {
         <S.BoardListHeadWriter>작성자</S.BoardListHeadWriter>
         <S.BoardListHeadDate>날짜</S.BoardListHeadDate>
         {props.data?.fetchBoards.map((el) => (
-          <tr id={el._id} onClick={props.onClickMoveDetail}>
+          <S.TableRow id={el._id} onClick={props.onClickMoveDetail}>
             <S.BoardListContents>
               {el._id.slice(-4).toUpperCase()}
             </S.BoardListContents>
@@ -19,17 +19,17 @@ export default function BoardListUI(props: IBOARDLISTUIProps): JSX.Element {
             <S.BoardListContents>
               {el.createdAt.split('T')[0]}
             </S.BoardListContents>
-          </tr>
+          </S.TableRow>
         ))}
       </S.BoardListTable>
-      <div>
-        <button onClick={props.onClickMoveBoardNew}>
+      <S.ButtonWrapper>
+        <S.NewPost onClick={props.onClickMoveBoardNew}>
           <S.PencilImage>
             <img src="/image/pencil.png" />
           </S.PencilImage>
-          <span>새글 등록하기</span>
-        </button>
-      </div>
+          <p>새 글 등록하기</p>
+        </S.NewPost>
+      </S.ButtonWrapper>
     </S.BoardListUI>
   );
 }
