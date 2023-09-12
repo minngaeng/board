@@ -18,6 +18,19 @@ export const CommentInput = styled.input`
   height: 4rem;
 `;
 
-export const Bottom = styled.div``;
+export const Bottom = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`;
 
-export const CommentWriteButton = styled.button``;
+export const CommentWriteButton = styled.button`
+  border: none;
+  width: 20%;
+  height: 35px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d6d6d6;
+  }
+`;
