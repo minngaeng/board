@@ -1,15 +1,26 @@
 import styled from '@emotion/styled';
 
 export const BoardCommentWriteUI = styled.div`
-  margin: 5rem auto;
+  margin: 0 auto;
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-export const Header = styled.div``;
+export const HeaderWriterPwd = styled.div`
+  width: inherit;
+`;
 
-export const HeaderInput = styled.input`
+export const WriterInput = styled.input`
   height: 2rem;
   padding-left: 0.5rem;
+`;
+
+export const PasswordInput = styled(WriterInput)``;
+
+export const CommentInputWrapper = styled.div`
+  width: 80%;
 `;
 
 export const CommentInput = styled.input`
@@ -19,6 +30,7 @@ export const CommentInput = styled.input`
 `;
 
 export const Bottom = styled.div`
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
