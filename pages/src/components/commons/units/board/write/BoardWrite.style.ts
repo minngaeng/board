@@ -117,6 +117,7 @@ export const FinalButton = styled.button<IFinalButtonProps>`
   margin: 2rem 0;
   border: none;
   cursor: pointer;
+  cursor: ${(props) => (props.isActive ? 'pointer' : 'not-allowed')};
 
   background-color: ${(props) => (props.isActive ? '#cecece' : '#e2e2e2')};
 `;

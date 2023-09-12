@@ -10,8 +10,6 @@ import {
 } from '../../../../../../../src/commons/types/generated/types';
 import { IBoardWriteProps, IUpdateBoardInputProps } from './BoardWrite.types';
 
-
-
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
