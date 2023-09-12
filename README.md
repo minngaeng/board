@@ -1,38 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### [김민경의 Next.js 로 뭐든 만들겠지.. (가제) ]
 
-## Getting Started
+<br />
 
-First, run the development server:
+<img src='./div.png' width='500px' alt='대문 이미지' />
+
+### 프로젝트 소개
+게시물 CRUD 기능을 중심으로 우선 제작 되었습니다. 현재 ver. 은 게시물 상세 페이지에서 댓글을 등록하고 삭제하는 기능까지 구현이 되어있습니다. 
+
+#### 사용된 기술 스택
+- Next.js
+- Apollo Client
+
+### 시작 가이드
+
+#### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+$ git clone 
+$ yarn install
+$ yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### 주요 특징 및 진행사항과 계획
+- 게시물 CRUD : 게시물을 작성,조회,수정,삭제할 수 있습니다. 각 게시물은 고유 ID 를 가지며 상세 페이지에서 확인이 간으합니다.
+- 댓글 관리 기능 : 게시물에 사용자들의 의견이나 피드백을 댓글 형태로 남길 수 있습니다. 작성자는 댓글 삭제의 권한을 가지고 있습닏. 
+- 타입 관리 : Codegen 을 통해 생성된 타입들의 안정성을 높입니다. 
+- 다가오는 업데이트 : 이미지 파일 업로드 기능, 카카오 지도 API 의 활용 등 다양한 기능을 추가할 예정입니다. 
