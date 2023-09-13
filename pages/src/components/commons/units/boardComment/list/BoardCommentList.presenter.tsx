@@ -7,16 +7,23 @@ export default function BoardCommentListUI(props: IBoardCommentListUIProps) {
       {props.data?.fetchBoardComments.map((el) => (
         <>
           <S.Header>
-            <S.ProfileImage>
-              <img src="/image/user.png" />
-            </S.ProfileImage>
-            <S.CommentWriter>{el.writer}</S.CommentWriter>
+            <S.UserInfo>
+              <S.ProfileImage>
+                <img src="/image/user.png" />
+              </S.ProfileImage>
+              <S.UserDetail>
+                <S.CommentWriter>{el.writer}</S.CommentWriter>
+                <S.Date>{el.createdAt.split('T')[0]}</S.Date>
+              </S.UserDetail>
+            </S.UserInfo>
+
+            <S.DeleteButton id={el._id} onClick={props.onClickDelete}>
+              삭제하기
+            </S.DeleteButton>
           </S.Header>
-          <button id={el._id} onClick={props.onClickDelete}>
-            삭제하기
-          </button>
-          <S.Comments>{el.contents}</S.Comments>
-          <p>{el.createdAt.split('T')[0]}</p>
+          <S.ContentsWrapper>
+            <S.Comments>{el.contents}</S.Comments>
+          </S.ContentsWrapper>
         </>
       ))}
     </S.BoardCommentListUI>
