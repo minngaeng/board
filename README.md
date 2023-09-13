@@ -2,7 +2,7 @@
 
 <br />
 
-<img src='./div.png' width='500px' alt='대문 이미지' />
+<img src='/image/div.png' width='500px' alt='대문 이미지' />
 
 ### 프로젝트 소개
 게시물 CRUD 기능을 중심으로 우선 제작 되었습니다. 현재 ver. 은 게시물 상세 페이지에서 댓글을 등록하고 삭제하는 기능까지 구현이 되어있습니다. 
