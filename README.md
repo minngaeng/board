@@ -2,7 +2,7 @@
 
 <br />
 
-![div](https://github.com/minngaeng/board/assets/124495210/9ba49864-dfb0-469f-831f-9ab171acbb56)
+![div](https://github.com/minngaeng/board/assets/124495210/bb4131cd-d872-4373-9151-485cbfbbdf20)
 
 ### 프로젝트 소개
 
