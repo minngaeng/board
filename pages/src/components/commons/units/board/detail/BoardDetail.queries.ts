@@ -6,7 +6,17 @@ export const FETCH_BOARD = gql`
       writer
       title
       contents
+      boardAddress {
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `;
 
+export const LIKE_BOARD = gql`
+  mutation likeBoard($boardId: ID!) {
+    likeBoard(boardId: $boardId)
+  }
+`;

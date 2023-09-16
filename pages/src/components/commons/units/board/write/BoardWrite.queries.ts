@@ -4,6 +4,11 @@ export const CREATE_BOARD = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!) {
     createBoard(createBoardInput: $createBoardInput) {
       _id
+      boardAddress {
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `;
@@ -23,7 +28,11 @@ export const UPDATE_BOARD = gql`
       writer
       title
       contents
+      boardAddress {
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `;
-

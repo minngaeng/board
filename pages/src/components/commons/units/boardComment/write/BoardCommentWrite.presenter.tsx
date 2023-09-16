@@ -1,3 +1,4 @@
+import { Rate } from 'antd';
 import * as S from './BoardCommentWrite.style';
 import { IBoardCommentWriiteUIProps } from './BoardCommentWrite.types';
 

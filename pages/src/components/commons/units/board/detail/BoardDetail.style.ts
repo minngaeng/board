@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Detail = styled.div`
   margin: 2rem auto;
   width: 80%;
-  height: 50rem;
+  height: 55rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,8 +15,15 @@ export const Profile = styled.div`
   padding-top: 3.8rem;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: space-between;
   border-bottom: 1px solid gray;
+`;
+
+export const UserWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const UserIcon = styled.div`
@@ -25,6 +32,12 @@ export const UserIcon = styled.div`
 
 export const Writer = styled.p`
   font-size: 1.2rem;
+`;
+
+export const Marker = styled.div`
+  img {
+    width: 45%;
+  }
 `;
 
 export const TitleWrapper = styled.div`
@@ -47,8 +60,27 @@ export const Contents = styled.p`
   padding: 0 1rem;
 `;
 
-export const EditButton = styled.button`
+export const Bottom = styled.div`
+  width: 100%;
+
   margin-top: 26rem;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const LikeButtonWrapper = styled.div`
+  border: 1px solid black;
+  margin-bottom: 3rem;
+
+  img {
+    width: 50%;
+  }
+`;
+
+export const EditButton = styled.button`
   border: 1px solid gray;
   border-radius: 4px;
   background-color: white;

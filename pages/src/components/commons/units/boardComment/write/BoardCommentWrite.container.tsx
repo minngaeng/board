@@ -8,6 +8,9 @@ import { FETCH_BOARD_COMMENTS } from '../list/BoardCommentList.queries';
 export default function BoardCommentWrite() {
   const router = useRouter();
 
+  const [value, setValue] = useState(3);
+  const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
+
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
 
   const [writer, setWriter] = useState('');

@@ -9,6 +9,7 @@ import {
   IMutationUpdateBoardArgs,
 } from '../../../../../../../src/commons/types/generated/types';
 import { IBoardWriteProps, IUpdateBoardInputProps } from './BoardWrite.types';
+import { Address } from 'react-daum-postcode';
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
@@ -27,11 +28,31 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [password, setPassword] = useState('');
   const [title, setTitle] = useState('');
   const [contents, setContetns] = useState('');
+  const [zipcode, setZipcode] = useState('');
+  const [address, setAddress] = useState('');
+  const [addressDetail, setAddressDetail] = useState('');
 
   const [writerError, setWriterError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [titleError, setTitleError] = useState('');
   const [contentsError, setContentsError] = useState('');
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleComplete = (data: Address) => {
+    setAddress(data.address);
+    setZipcode(data.zonecode);
+    setIsModalOpen((prev) => !prev);
+  };
+
+  const showModal = () => {
+    console.log(isModalOpen);
+    setIsModalOpen((prev) => !prev);
+  };
+
+  const onChagneAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
+    setAddressDetail(event.target.value);
+  };
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.currentTarget.value);
@@ -111,6 +132,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
               password,
               title,
               contents,
+              boardAddress: {
+                zipcode,
+                address,
+                addressDetail,
+              },
             },
           },
         });
@@ -122,22 +148,34 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
   const onClickEdit = async (): Promise<void> => {
-    if (typeof router.query.boardId !== 'string') {
-      return;
+    try {
+      if (typeof router.query.boardId !== 'string') {
+        return;
+      }
+
+      const updateBoardInput: IUpdateBoardInputProps = {};
+      if (title) updateBoardInput.title = title;
+      if (contents) updateBoardInput.contents = contents;
+
+      if (!updateBoardInput.boardAddress) {
+        updateBoardInput.boardAddress = {};
+      }
+      if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
+      if (address) updateBoardInput.boardAddress.address = address;
+      if (addressDetail)
+        updateBoardInput.boardAddress.addressDetail = addressDetail;
+
+      const result = await updateBoard({
+        variables: {
+          updateBoardInput,
+          boardId: router.query.boardId,
+          password,
+        },
+      });
+      router.push(`/boards/${router.query.boardId}`);
+    } catch (errors) {
+      if (errors instanceof Error) alert(errors.message);
     }
-
-    const updateBoardInput: IUpdateBoardInputProps = {};
-    if (title) updateBoardInput.title = title;
-    if (contents) updateBoardInput.contents = contents;
-
-    const result = await updateBoard({
-      variables: {
-        updateBoardInput,
-        boardId: router.query.boardId,
-        password,
-      },
-    });
-    router.push(`/boards/${router.query.boardId}`);
   };
 
   return (
@@ -159,6 +197,12 @@ export default function BoardWrite(props: IBoardWriteProps) {
       isEdit={props.isEdit}
       onClickEdit={onClickEdit}
       data={props.data}
+      showModal={showModal}
+      isModalOpen={isModalOpen}
+      handleComplete={handleComplete}
+      zipcode={zipcode}
+      address={address}
+      onChangeAddressDetail={onChagneAddressDetail}
     />
   );
 }

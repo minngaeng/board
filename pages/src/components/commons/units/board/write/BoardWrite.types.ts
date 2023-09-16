@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react';
+import { Address } from 'react-daum-postcode';
 
 export interface IBoardWriteProps {
   isEdit: boolean;
@@ -8,6 +9,14 @@ export interface IBoardWriteProps {
 export interface IUpdateBoardInputProps {
   title?: string;
   contents?: string;
+  zipcode?: string;
+  address?: string;
+  addressDetail?: string;
+  boardAddress?: {
+    zipcode?: string;
+    address?: string;
+    addressDetail?: string;
+  };
 }
 
 export interface IBoardWriteUIProps {
@@ -28,4 +37,10 @@ export interface IBoardWriteUIProps {
   isEdit: boolean;
   onClickEdit: () => void;
   data: any;
+  showModal: () => void;
+  isModalOpen: boolean;
+  handleComplete: (data: Address) => void;
+  zipcode: string;
+  address: string;
+  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
 }
