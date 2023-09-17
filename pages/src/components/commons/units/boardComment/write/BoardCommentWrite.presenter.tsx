@@ -3,6 +3,7 @@ import * as S from './BoardCommentWrite.style';
 import { IBoardCommentWriiteUIProps } from './BoardCommentWrite.types';
 
 export default function BoardCommentWriteUI(props: IBoardCommentWriiteUIProps) {
+  console.log(props.star);
   return (
     <S.BoardCommentWriteUI>
       <S.HeaderWriterPwd>
@@ -15,6 +16,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriiteUIProps) {
           onChange={props.onChangePassword}
           placeholder="비밀번호"
         />
+        <Rate value={props.star} onChange={props.setStar} />
       </S.HeaderWriterPwd>
       <S.CommentInputWrapper>
         <S.CommentInput

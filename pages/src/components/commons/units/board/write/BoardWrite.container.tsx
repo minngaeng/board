@@ -31,6 +31,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [zipcode, setZipcode] = useState('');
   const [address, setAddress] = useState('');
   const [addressDetail, setAddressDetail] = useState('');
+  const [youtube, setYoutube] = useState('');
 
   const [writerError, setWriterError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -52,6 +53,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
 
   const onChagneAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
     setAddressDetail(event.target.value);
+  };
+
+  const onChagneYoutube = (event: ChangeEvent<HTMLInputElement>) => {
+    setYoutube(event.target.value);
   };
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
@@ -132,6 +137,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
               password,
               title,
               contents,
+              youtubeUrl: youtube,
               boardAddress: {
                 zipcode,
                 address,
@@ -156,6 +162,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       const updateBoardInput: IUpdateBoardInputProps = {};
       if (title) updateBoardInput.title = title;
       if (contents) updateBoardInput.contents = contents;
+      if (youtube) updateBoardInput.youtubeUrl = youtube;
 
       if (!updateBoardInput.boardAddress) {
         updateBoardInput.boardAddress = {};
@@ -203,6 +210,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       zipcode={zipcode}
       address={address}
       onChangeAddressDetail={onChagneAddressDetail}
+      onChangeYoutube={onChagneYoutube}
     />
   );
 }

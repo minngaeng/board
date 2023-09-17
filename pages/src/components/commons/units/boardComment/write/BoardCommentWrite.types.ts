@@ -7,4 +7,6 @@ export interface IBoardCommentWriiteUIProps {
   onClickPostComment: () => void;
   contents: string;
   writer: string;
+  star: number;
+  setStar: (value: number) => void;
 }

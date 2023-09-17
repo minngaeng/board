@@ -8,6 +8,12 @@ export const BoardCommentListUI = styled.div`
   align-items: center;
 `;
 
+export const PasswordInput = styled.input`
+  width: 93%;
+  height: 2rem;
+  margin: 1rem 0;
+`;
+
 export const Header = styled.div`
   border: none;
   border-top: 1px solid #d3d3d3;

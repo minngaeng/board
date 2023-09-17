@@ -86,7 +86,10 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
 
         <S.YoutubeWrapper>
           <label>유튜브</label>
-          <S.Youtube />
+          <S.Youtube
+            onChange={props.onChangeYoutube}
+            defaultValue={props.data?.fetchBoard?.youtubeUrl}
+          />
         </S.YoutubeWrapper>
         <S.FinalButton
           isActive={props.isEdit ? true : props.isActive}

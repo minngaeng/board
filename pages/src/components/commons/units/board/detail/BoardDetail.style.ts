@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import ReactPlayer from 'react-player';
 
 export const Detail = styled.div`
   margin: 2rem auto;
@@ -60,11 +61,16 @@ export const Contents = styled.p`
   padding: 0 1rem;
 `;
 
-export const Bottom = styled.div`
-  width: 100%;
+export const PlayerWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 0;
+`;
 
-  margin-top: 26rem;
-  border: 1px solid black;
+export const Player = styled(ReactPlayer)``;
+
+export const Bottom = styled.div`
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;

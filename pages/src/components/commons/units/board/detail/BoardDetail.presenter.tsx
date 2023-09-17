@@ -2,9 +2,10 @@ import { UserOutlined } from '@ant-design/icons';
 import * as S from './BoardDetail.style';
 import { IBoardDetailUIProps } from './BoardDetail.types';
 import { Tooltip } from 'antd';
+import ReactPlayer from 'react-player';
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
-  console.log(props.data);
+  console.log('상세조회', props.data);
   return (
     <S.Detail>
       <S.Profile>
@@ -26,6 +27,11 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
       </S.TitleWrapper>
       <S.ContentsWrapper>
         <S.Contents>{props.data?.fetchBoard?.contents}</S.Contents>{' '}
+        {props.data?.fetchBoard.youtubeUrl && (
+          <S.PlayerWrapper>
+            <S.Player url={props.data?.fetchBoard.youtubeUrl} />
+          </S.PlayerWrapper>
+        )}
       </S.ContentsWrapper>
       <S.Bottom>
         <S.LikeButtonWrapper>

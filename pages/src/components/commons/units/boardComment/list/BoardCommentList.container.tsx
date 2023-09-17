@@ -11,13 +11,25 @@ import {
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from '../../../../../../../src/commons/types/generated/types';
-import { MouseEvent } from 'react';
+import { ChangeEvent, MouseEvent, useState } from 'react';
 
 export default function BoardCommentList() {
   const router = useRouter();
   if (typeof router.query.boardId !== 'string') {
     return null;
   }
+
+  const [password, setPassword] = useState('');
+  const [isDeleteModal, setIsDeleteModal] = useState(false);
+  const [boardCommentId, setBoardCommentId] = useState('');
+
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+  const onClickDeleteModal = (event: MouseEvent<HTMLButtonElement>) => {
+    setIsDeleteModal((prev) => !prev);
+    setBoardCommentId(event.currentTarget.id);
+  };
 
   const [deleteBoardComment] = useMutation<
     Pick<IMutation, 'deleteBoardComment'>,
@@ -34,12 +46,13 @@ export default function BoardCommentList() {
   });
 
   const onClickDelete = async (event: MouseEvent<HTMLButtonElement>) => {
-    const password = window.prompt('비밀번호를 입력해주세요.');
+    // const password = window.prompt('비밀번호를 입력해주세요.');
 
     await deleteBoardComment({
       variables: {
         password,
-        boardCommentId: event.currentTarget.id,
+        // boardCommentId: event.currentTarget.id,
+        boardCommentId,
       },
       refetchQueries: [
         {
@@ -50,7 +63,16 @@ export default function BoardCommentList() {
         },
       ],
     });
+    setIsDeleteModal((prev) => !prev);
   };
-
-  return <BoardCommentListUI data={data} onClickDelete={onClickDelete} />;
+  console.log('ID', boardCommentId);
+  return (
+    <BoardCommentListUI
+      data={data}
+      onClickDelete={onClickDelete}
+      onClickDeleteModal={onClickDeleteModal}
+      isDeleteModal={isDeleteModal}
+      onChangePassword={onChangePassword}
+    />
+  );
 }

@@ -12,6 +12,7 @@ export interface IUpdateBoardInputProps {
   zipcode?: string;
   address?: string;
   addressDetail?: string;
+  youtubeUrl?: string;
   boardAddress?: {
     zipcode?: string;
     address?: string;
@@ -43,4 +44,5 @@ export interface IBoardWriteUIProps {
   zipcode: string;
   address: string;
   onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeYoutube: (event: ChangeEvent<HTMLInputElement>) => void;
 }

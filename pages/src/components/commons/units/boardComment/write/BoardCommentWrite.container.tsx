@@ -16,6 +16,7 @@ export default function BoardCommentWrite() {
   const [writer, setWriter] = useState('');
   const [password, setPassword] = useState('');
   const [contents, setContents] = useState('');
+  const [star, setStar] = useState(0);
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.currentTarget.value);
@@ -37,7 +38,7 @@ export default function BoardCommentWrite() {
             writer,
             password,
             contents,
-            rating: 0,
+            rating: star,
           },
           boardId: router.query.boardId,
         },
@@ -63,6 +64,8 @@ export default function BoardCommentWrite() {
       onClickPostComment={onClickPostComment}
       contents={contents}
       writer={writer}
+      star={star}
+      setStar={setStar}
     />
   );
 }
