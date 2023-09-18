@@ -29,6 +29,19 @@ export default function BoardListUI(props: IBOARDLISTUIProps): JSX.Element {
           </S.PencilImage>
           <p>새 글 등록하기</p>
         </S.NewPost>
+        <span onClick={props.onClickPrev}>prev</span>
+        {new Array(10).fill(1).map(
+          (_, index) =>
+            index + props.startPage <= props.lastPage && (
+              <S.Page
+                id={String(index + props.startPage)}
+                onClick={props.onClickPage}
+              >
+                {index + props.startPage}
+              </S.Page>
+            )
+        )}
+        <span onClick={props.onClickNext}>next</span>
       </S.ButtonWrapper>
     </S.BoardListUI>
   );

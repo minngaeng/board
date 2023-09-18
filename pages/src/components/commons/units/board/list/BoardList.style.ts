@@ -73,3 +73,8 @@ export const NewPost = styled.button`
     background-color: #e2e2e2;
   }
 `;
+
+export const Page = styled.span`
+  padding: 0 0.5rem;
+  cursor: pointer;
+`;
