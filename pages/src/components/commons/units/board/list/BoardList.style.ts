@@ -55,8 +55,12 @@ export const PencilImage = styled.div`
   display: inline;
 `;
 
-export const ButtonWrapper = styled.div`
+export const BottomWrapper = styled.div`
   margin: 2rem 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const NewPost = styled.button`
@@ -67,14 +71,9 @@ export const NewPost = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  cursor: pointer;
 
   &:hover {
     background-color: #e2e2e2;
   }
 `;
 
-export const Page = styled.span`
-  padding: 0 0.5rem;
-  cursor: pointer;
-`;

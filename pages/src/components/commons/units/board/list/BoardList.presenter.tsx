@@ -1,3 +1,4 @@
+import Paginations01 from '../../../paginations/01/Paginations01.container';
 import * as S from './BoardList.style';
 import { IBOARDLISTUIProps } from './BoardList.types';
 
@@ -22,27 +23,18 @@ export default function BoardListUI(props: IBOARDLISTUIProps): JSX.Element {
           </S.TableRow>
         ))}
       </S.BoardListTable>
-      <S.ButtonWrapper>
+      <S.BottomWrapper>
         <S.NewPost onClick={props.onClickMoveBoardNew}>
           <S.PencilImage>
             <img src="/image/pencil.png" />
           </S.PencilImage>
           <p>새 글 등록하기</p>
         </S.NewPost>
-        <span onClick={props.onClickPrev}>prev</span>
-        {new Array(10).fill(1).map(
-          (_, index) =>
-            index + props.startPage <= props.lastPage && (
-              <S.Page
-                id={String(index + props.startPage)}
-                onClick={props.onClickPage}
-              >
-                {index + props.startPage}
-              </S.Page>
-            )
-        )}
-        <span onClick={props.onClickNext}>next</span>
-      </S.ButtonWrapper>
+        <Paginations01
+          refetch={props.refetch}
+          dataBoardsCount={props.dataBoardsCount}
+        />
+      </S.BottomWrapper>
     </S.BoardListUI>
   );
 }

@@ -11,7 +11,6 @@ import {
 
 export default function BoardList() {
   const router = useRouter();
-  const [startPage, setStartPage] = useState(1);
 
   const { data, refetch } = useQuery<
     Pick<IQuery, 'fetchBoards'>,
@@ -22,25 +21,6 @@ export default function BoardList() {
     Pick<IQuery, 'fetchBoardsCount'>,
     IQueryFetchBoardsCountArgs
   >(FETCH_BOARDS_COUNT);
-
-  const lastPage = Math.ceil((dataBoardsCount?.fetchBoardsCount ?? 10) / 10);
-
-  const onClickPrev = () => {
-    if (startPage === 1) return;
-    refetch({ page: startPage - 10 });
-    setStartPage(startPage - 10);
-  };
-
-  const onClickPage = (event: MouseEvent<HTMLSpanElement>) => {
-    refetch({ page: Number(event.currentTarget.id) });
-  };
-  console.log(lastPage);
-  const onClickNext = () => {
-    if (startPage + 10 <= lastPage) {
-      refetch({ page: startPage + 10 });
-      setStartPage(startPage + 10);
-    }
-  };
 
   const onClickMoveDetail = (event: MouseEvent<HTMLTableRowElement>): void => {
     // router.push(`/boards/${data.fetchBoards._id}`);
@@ -56,11 +36,8 @@ export default function BoardList() {
       data={data}
       onClickMoveDetail={onClickMoveDetail}
       onClickMoveBoardNew={onClickMoveBoardNew}
-      onClickPage={onClickPage}
-      onClickPrev={onClickPrev}
-      onClickNext={onClickNext}
-      startPage={startPage}
-      lastPage={lastPage}
+      refetch={refetch}
+      dataBoardsCount={dataBoardsCount}
     />
   );
 }
