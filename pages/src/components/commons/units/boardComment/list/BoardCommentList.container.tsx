@@ -4,14 +4,12 @@ import {
   DELETE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,
 } from './BoardCommentList.queries';
-import { useRouter } from 'next/router';
+
 import {
-  IMutation,
-  IMutationDeleteBoardCommentArgs,
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from '../../../../../../../src/commons/types/generated/types';
-import { ChangeEvent, MouseEvent, useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function BoardCommentList() {
   const router = useRouter();
@@ -19,24 +17,7 @@ export default function BoardCommentList() {
     return null;
   }
 
-  const [password, setPassword] = useState('');
-  const [isDeleteModal, setIsDeleteModal] = useState(false);
-  const [boardCommentId, setBoardCommentId] = useState('');
-
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
-  const onClickDeleteModal = (event: MouseEvent<HTMLButtonElement>) => {
-    setIsDeleteModal((prev) => !prev);
-    setBoardCommentId(event.currentTarget.id);
-  };
-
-  const [deleteBoardComment] = useMutation<
-    Pick<IMutation, 'deleteBoardComment'>,
-    IMutationDeleteBoardCommentArgs
-  >(DELETE_BOARD_COMMENT);
-
-  const { data } = useQuery<
+  const { data, fetchMore } = useQuery<
     Pick<IQuery, 'fetchBoardComments'>,
     IQueryFetchBoardCommentsArgs
   >(FETCH_BOARD_COMMENTS, {
@@ -45,34 +26,26 @@ export default function BoardCommentList() {
     },
   });
 
-  const onClickDelete = async (event: MouseEvent<HTMLButtonElement>) => {
-    // const password = window.prompt('비밀번호를 입력해주세요.');
-
-    await deleteBoardComment({
+  const loadFunc = () => {
+    fetchMore({
       variables: {
-        password,
-        // boardCommentId: event.currentTarget.id,
-        boardCommentId,
+        page: Math.ceil((data?.fetchBoardComments.length ?? 10) / 10) + 1,
       },
-      refetchQueries: [
-        {
-          query: FETCH_BOARD_COMMENTS,
-          variables: {
-            boardId: router.query.boardId,
-          },
-        },
-      ],
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (fetchMoreResult.fetchBoardComments === undefined) {
+          return {
+            fetchBoardComments: [...prev.fetchBoardComments],
+          };
+        }
+        return {
+          fetchBoardComments: [
+            ...prev.fetchBoardComments,
+            ...fetchMoreResult.fetchBoardComments,
+          ],
+        };
+      },
     });
-    setIsDeleteModal((prev) => !prev);
   };
-  console.log('ID', boardCommentId);
-  return (
-    <BoardCommentListUI
-      data={data}
-      onClickDelete={onClickDelete}
-      onClickDeleteModal={onClickDeleteModal}
-      isDeleteModal={isDeleteModal}
-      onChangePassword={onChangePassword}
-    />
-  );
+
+  return <BoardCommentListUI data={data} loadFunc={loadFunc} />;
 }

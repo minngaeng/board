@@ -8,6 +8,10 @@ export const Detail = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 1000px;
+  border: 1px solid gray;
+  justify-content: space-around;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 `;
 
 export const Profile = styled.div`
@@ -84,6 +88,13 @@ export const LikeButtonWrapper = styled.div`
   img {
     width: 50%;
   }
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
 `;
 
 export const EditButton = styled.button`

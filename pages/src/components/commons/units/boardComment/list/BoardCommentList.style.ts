@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Rate } from 'antd';
 
 export const BoardCommentListUI = styled.div`
   margin: 0 auto;
@@ -17,7 +18,7 @@ export const PasswordInput = styled.input`
 export const Header = styled.div`
   border: none;
   border-top: 1px solid #d3d3d3;
-  width: inherit;
+  width: 100%;
   margin-top: 1rem;
   padding-top: 0.5rem;
   display: flex;
@@ -77,8 +78,15 @@ export const Date = styled.p`
   font-size: 1rem;
 `;
 
+export const Rating = styled(Rate)``;
+
 export const ContentsWrapper = styled.div`
-  width: inherit;
+  width: 100%;
+  padding: 1rem 0;
 `;
 
-export const Comments = styled.div``;
+export const Comments = styled.p``;
+
+export const EditInput = styled.div`
+  width: 125%;
+`;

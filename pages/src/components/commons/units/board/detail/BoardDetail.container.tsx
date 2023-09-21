@@ -1,9 +1,10 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { FETCH_BOARD, LIKE_BOARD } from './BoardDetail.queries';
+import { DELETE_BOARD, FETCH_BOARD, LIKE_BOARD } from './BoardDetail.queries';
 import BoardDetailUI from './BoardDetail.presenter';
 import {
   IMutation,
+  IMutationDeleteBoardArgs,
   IMutationLikeBoardArgs,
   IQuery,
   IQueryFetchBoardArgs,
@@ -27,8 +28,32 @@ export default function BoardDetail() {
     }
   );
 
+  const [deleteBoard] = useMutation<
+    Pick<IMutation, 'deleteBoard'>,
+    IMutationDeleteBoardArgs
+  >(DELETE_BOARD);
+
   const onClickEdit = () => {
     router.push(`/boards/${router.query.boardId}/edit`);
+  };
+
+  const onClickBoards = () => {
+    router.push('/boards');
+  };
+
+  const onClickDelete = async () => {
+    if (typeof router.query.boardId !== 'string') return;
+    try {
+      const result = await deleteBoard({
+        variables: {
+          boardId: router.query.boardId,
+        },
+      });
+      alert('성공적으로 삭제를 했습니다.');
+      router.push('/boards');
+    } catch (errors) {
+      if (errors instanceof Error) alert(errors.message);
+    }
   };
 
   // const onClickLikeBoard = () => {
@@ -45,7 +70,9 @@ export default function BoardDetail() {
     <BoardDetailUI
       data={data}
       onClickEdit={onClickEdit}
+      onClickBoards={onClickBoards}
       // onClickLikeBoard={onClickLikeBoard}
+      onClickDelete={onClickDelete}
     />
   );
 }

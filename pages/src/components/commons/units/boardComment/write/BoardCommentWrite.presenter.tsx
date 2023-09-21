@@ -1,14 +1,12 @@
-import { Rate } from 'antd';
 import * as S from './BoardCommentWrite.style';
 import { IBoardCommentWriiteUIProps } from './BoardCommentWrite.types';
 
 export default function BoardCommentWriteUI(props: IBoardCommentWriiteUIProps) {
-  console.log(props.star);
   return (
     <S.BoardCommentWriteUI>
       <S.HeaderWriterPwd>
         <S.WriterInput
-          value={props.writer}
+          value={props.writer ? props.writer : props.el?.writer ?? ''}
           onChange={props.onChangeWriter}
           placeholder="작성자"
         />
@@ -16,17 +14,25 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriiteUIProps) {
           onChange={props.onChangePassword}
           placeholder="비밀번호"
         />
-        <Rate value={props.star} onChange={props.setStar} />
+        <S.RateStar
+          value={props.el?.rating ? props.el?.rating : props?.star}
+          onChange={props.setStar}
+        />
       </S.HeaderWriterPwd>
       <S.CommentInputWrapper>
         <S.CommentInput
-          value={props.contents}
+          value={props.contents ? props.contents : props.el?.contents}
           onChange={props.onChangeContents}
         />
       </S.CommentInputWrapper>
       <S.Bottom>
-        <S.CommentWriteButton onClick={props.onClickPostComment}>
-          등록하기
+        {/* <button>취소</button> */}
+        <S.CommentWriteButton
+          onClick={
+            props.isEdit ? props.onClickUpdateComment : props.onClickPostComment
+          }
+        >
+        {props.isEdit ? '수정하기' : '등록하기'}
         </S.CommentWriteButton>
       </S.Bottom>
     </S.BoardCommentWriteUI>

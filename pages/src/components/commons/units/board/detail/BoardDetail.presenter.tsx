@@ -5,7 +5,6 @@ import { Tooltip } from 'antd';
 import ReactPlayer from 'react-player';
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
-  console.log('상세조회', props.data);
   return (
     <S.Detail>
       <S.Profile>
@@ -34,10 +33,16 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
         )}
       </S.ContentsWrapper>
       <S.Bottom>
-        <S.LikeButtonWrapper>
+        {/* <S.LikeButtonWrapper>
           <img src="/image/like.png" alt="like-button" />
-        </S.LikeButtonWrapper>
-        <S.EditButton onClick={props.onClickEdit}>수정하러가기</S.EditButton>
+        </S.LikeButtonWrapper> */}
+        <S.ButtonWrapper>
+          <S.EditButton onClick={props.onClickBoards}>
+            목록으로가기
+          </S.EditButton>
+          <S.EditButton onClick={props.onClickEdit}>수정하러가기</S.EditButton>
+          <S.EditButton onClick={props.onClickDelete}>삭제하기</S.EditButton>
+        </S.ButtonWrapper>
       </S.Bottom>
     </S.Detail>
   );

@@ -3,7 +3,7 @@ import * as S from './BoardWrite.style';
 import { IBoardWriteUIProps } from './BoardWrite.types';
 import DaumPostcodeEmbed from 'react-daum-postcode';
 
-export default function BoardWriteUI(props: IBoardWriteUIProps) {
+export default function  BoardWriteUI(props: IBoardWriteUIProps) {
   console.log('페치데이터', props.data);
   return (
     <>

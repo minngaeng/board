@@ -154,24 +154,24 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
   const onClickEdit = async (): Promise<void> => {
-    try {
-      if (typeof router.query.boardId !== 'string') {
-        return;
-      }
+    if (typeof router.query.boardId !== 'string') {
+      return;
+    }
 
-      const updateBoardInput: IUpdateBoardInputProps = {};
-      if (title) updateBoardInput.title = title;
-      if (contents) updateBoardInput.contents = contents;
-      if (youtube) updateBoardInput.youtubeUrl = youtube;
+    const updateBoardInput: IUpdateBoardInputProps = {};
+    if (title) updateBoardInput.title = title;
+    if (contents) updateBoardInput.contents = contents;
+    if (youtube) updateBoardInput.youtubeUrl = youtube;
 
-      if (!updateBoardInput.boardAddress) {
-        updateBoardInput.boardAddress = {};
-      }
+    if (zipcode || address || addressDetail) {
+      updateBoardInput.boardAddress = {};
+
       if (zipcode) updateBoardInput.boardAddress.zipcode = zipcode;
       if (address) updateBoardInput.boardAddress.address = address;
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail;
-
+    }
+    try {
       const result = await updateBoard({
         variables: {
           updateBoardInput,
