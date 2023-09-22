@@ -25,12 +25,26 @@ $ yarn install
 $ yarn dev
 ```
 
-#### 주요 특징 및 진행사항과 계획
+### 주요 특징 및 진행사항과 계획
 
-- 게시물 CRUD : 게시물을 작성,조회,수정,삭제할 수 있습니다. 각 게시물은 고유 ID 를 가지며 상세 페이지에서 확인이 가능합니다.
+### 1. 게시물 CRUD
+
+#### [구현 방법 및 주요 기능과 로직]
+
 ![게시물](https://github.com/minngaeng/board/assets/124495210/eebd8ea4-b80b-49ca-bada-838580890d92)
 
+- 게시물 작성 (`BoardWrite`) **`pages/boards/new/index.ts`**
 
-- 댓글 관리 기능 : 게시물에 사용자들의 의견이나 피드백을 댓글 형태로 남길 수 있습니다. 작성자는 댓글 삭제의 권한을 가지고 있습니다.
-- 타입 관리 : Codegen 을 통해 생성된 타입들의 안정성을 높입니다.
-- 다가오는 업데이트 : 이미지 파일 업로드 기능, 카카오 지도 API 의 활용 등 다양한 기능을 추가할 예정입니다.
+  - 사용자는 입력을 받기 위한 여러 상태값(`useState`)을 관리합니다.
+  - 입력 검증 후, Apollo Client의 `useMutation`을 사용하여 서버로 게시물 생성 요청을 보냅니다.
+
+- 게시물 목록 (`BoardList`) **`pages/boards/index.ts`**
+
+  - `Apollo Client`의 `useQuery`를 사용하여 목록을 서버에서 가져온다.
+
+- 게시물 상세 (`BoardDetail`) **`pages/boards/[boardId]/index.ts`**
+
+  - url의 `boardId`파라미터를 사용하여 해당 게시물의 상세 정보를 조회합니다.
+  - 삭제 버튼을 클릭하면, Apollo Client의 `useMutation`을 사용하여 서버로 게시물 삭제 요청을 보냅니다.
+
+
