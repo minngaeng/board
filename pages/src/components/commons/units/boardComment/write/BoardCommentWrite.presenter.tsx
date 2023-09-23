@@ -21,7 +21,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriiteUIProps) {
       </S.HeaderWriterPwd>
       <S.CommentInputWrapper>
         <S.CommentInput
-          value={props.contents ? props.contents : props.el?.contents}
+          value={props.contents ? props.contents : props.el?.contents ?? ''}
           onChange={props.onChangeContents}
         />
       </S.CommentInputWrapper>
@@ -32,7 +32,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriiteUIProps) {
             props.isEdit ? props.onClickUpdateComment : props.onClickPostComment
           }
         >
-        {props.isEdit ? '수정하기' : '등록하기'}
+          {props.isEdit ? '수정하기' : '등록하기'}
         </S.CommentWriteButton>
       </S.Bottom>
     </S.BoardCommentWriteUI>

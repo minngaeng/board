@@ -39,8 +39,8 @@ export default function BoardCommentList() {
         }
         return {
           fetchBoardComments: [
-            ...prev.fetchBoardComments,
-            ...fetchMoreResult.fetchBoardComments,
+            ...(prev?.fetchBoardComments ?? []),
+            ...(fetchMoreResult.fetchBoardComments ?? []),
           ],
         };
       },
