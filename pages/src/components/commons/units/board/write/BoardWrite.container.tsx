@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
 import { useMutation } from '@apollo/client';
-import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries';
-import { ChangeEvent, useState } from 'react';
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from './BoardWrite.queries';
+import { ChangeEvent, useRef, useState } from 'react';
 import BoardWriteUI from './BoardWrite.presenter';
 import {
   IMutation,
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
+  IMutationUploadFileArgs,
 } from '../../../../../../../src/commons/types/generated/types';
 import { IBoardWriteProps, IUpdateBoardInputProps } from './BoardWrite.types';
 import { Address } from 'react-daum-postcode';
@@ -39,6 +40,14 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [contentsError, setContentsError] = useState('');
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [imageUrls, setImageUrls] = useState(['', '', '']);
+
+  const onChangeFileUrls = (imageUrl: string, index: number) => {
+    const newImageUrl = [...imageUrls];
+    newImageUrl[index] = imageUrl;
+    setImageUrls(newImageUrl);
+  };
 
   const handleComplete = (data: Address) => {
     setAddress(data.address);
@@ -138,6 +147,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
               title,
               contents,
               youtubeUrl: youtube,
+              images: [...imageUrls],
               boardAddress: {
                 zipcode,
                 address,
@@ -153,6 +163,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       if (error instanceof Error) alert(error.message);
     }
   };
+
   const onClickEdit = async (): Promise<void> => {
     if (typeof router.query.boardId !== 'string') {
       return;
@@ -211,6 +222,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
       address={address}
       onChangeAddressDetail={onChagneAddressDetail}
       onChangeYoutube={onChagneYoutube}
+      imageUrls={imageUrls}
+      onChangeFileUrls={onChangeFileUrls}
     />
   );
 }

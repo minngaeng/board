@@ -5,6 +5,7 @@ import { Tooltip } from 'antd';
 import ReactPlayer from 'react-player';
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
+  console.log(props.data?.fetchBoard.images);
   return (
     <S.Detail>
       <S.Profile>
@@ -26,6 +27,13 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
       </S.TitleWrapper>
       <S.ContentsWrapper>
         <S.Contents>{props.data?.fetchBoard?.contents}</S.Contents>{' '}
+        <S.ImageWrapper>
+          {props.data?.fetchBoard.images
+            ?.filter((el) => el !== '')
+            .map((el) => (
+              <S.Image key={el} src={`https://storage.googleapis.com/${el}`} />
+            ))}
+        </S.ImageWrapper>
         {props.data?.fetchBoard.youtubeUrl && (
           <S.PlayerWrapper>
             <S.Player url={props.data?.fetchBoard.youtubeUrl} />

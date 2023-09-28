@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, RefObject } from 'react';
 import { Address } from 'react-daum-postcode';
 
 export interface IBoardWriteProps {
@@ -45,4 +45,6 @@ export interface IBoardWriteUIProps {
   address: string;
   onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeYoutube: (event: ChangeEvent<HTMLInputElement>) => void;
+  imageUrls: string[];
+  onChangeFileUrls: (imgUrl: string, index: number) => void;
 }

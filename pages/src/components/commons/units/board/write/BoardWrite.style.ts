@@ -111,6 +111,12 @@ export const Youtube = styled.input`
 
 export const YoutubeWrapper = styled(AddressWrapper)``;
 
+export const ImageWrapper = styled(YoutubeWrapper)``;
+
+export const ImageBox = styled.div`
+  display: flex;
+`;
+
 export const FinalButton = styled.button<IFinalButtonProps>`
   width: 30%;
   height: 3rem;

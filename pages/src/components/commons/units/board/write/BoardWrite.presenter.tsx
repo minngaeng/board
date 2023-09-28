@@ -2,9 +2,10 @@ import { Button, Modal } from 'antd';
 import * as S from './BoardWrite.style';
 import { IBoardWriteUIProps } from './BoardWrite.types';
 import DaumPostcodeEmbed from 'react-daum-postcode';
+import Uploads01 from '../../../uploads/01/Uploads01.container';
+import { v4 as uuidv4 } from 'uuid';
 
-export default function  BoardWriteUI(props: IBoardWriteUIProps) {
-  console.log('페치데이터', props.data);
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <>
       {props.isModalOpen && (
@@ -91,6 +92,19 @@ export default function  BoardWriteUI(props: IBoardWriteUIProps) {
             defaultValue={props.data?.fetchBoard?.youtubeUrl}
           />
         </S.YoutubeWrapper>
+        <S.ImageWrapper>
+          <label>이미지 첨부</label>
+          <S.ImageBox>
+            {props.imageUrls.map((el, index) => (
+              <Uploads01
+                key={uuidv4()}
+                imageUrl={el}
+                index={index}
+                onChangeFileUrls={props.onChangeFileUrls}
+              />
+            ))}
+          </S.ImageBox>
+        </S.ImageWrapper>
         <S.FinalButton
           isActive={props.isEdit ? true : props.isActive}
           onClick={props.isEdit ? props.onClickEdit : props.onClickSubmit}

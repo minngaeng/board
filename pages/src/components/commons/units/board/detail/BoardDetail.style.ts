@@ -65,6 +65,18 @@ export const Contents = styled.p`
   padding: 0 1rem;
 `;
 
+export const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+export const Image = styled.img`
+  width: 15rem;
+  height: 350px;
+  margin: 1rem 1.1rem 0 0;
+`;
+
 export const PlayerWrapper = styled.div`
   display: flex;
   justify-content: center;
