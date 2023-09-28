@@ -1,13 +1,12 @@
 import { useRouter } from 'next/router';
 import { useMutation } from '@apollo/client';
 import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from './BoardWrite.queries';
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import BoardWriteUI from './BoardWrite.presenter';
 import {
   IMutation,
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
-  IMutationUploadFileArgs,
 } from '../../../../../../../src/commons/types/generated/types';
 import { IBoardWriteProps, IUpdateBoardInputProps } from './BoardWrite.types';
 import { Address } from 'react-daum-postcode';
@@ -48,6 +47,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
     newImageUrl[index] = imageUrl;
     setImageUrls(newImageUrl);
   };
+
+  useEffect(() => {
+    const images = props.data?.fetchBoard.images;
+    if (images !== undefined && images !== null) setImageUrls([...images]);
+  }, [props.data]);
 
   const handleComplete = (data: Address) => {
     setAddress(data.address);
@@ -165,6 +169,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
   };
 
   const onClickEdit = async (): Promise<void> => {
+    const currentFiles = JSON.stringify(imageUrls);
+    const defaultFiles = JSON.stringify(props.data?.fetchBoard.images);
+    const isChangedFiles = currentFiles !== defaultFiles;
+
     if (typeof router.query.boardId !== 'string') {
       return;
     }
@@ -173,6 +181,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
     if (youtube) updateBoardInput.youtubeUrl = youtube;
+    if (isChangedFiles) updateBoardInput.images = imageUrls;
 
     if (zipcode || address || addressDetail) {
       updateBoardInput.boardAddress = {};
@@ -182,6 +191,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail;
     }
+
     try {
       const result = await updateBoard({
         variables: {

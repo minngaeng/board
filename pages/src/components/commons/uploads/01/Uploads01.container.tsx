@@ -29,12 +29,13 @@ export default function Uploads01(props: IUploads01Props) {
 
     props.onChangeFileUrls(result.data?.uploadFile.url ?? '', props.index);
   };
+
   return (
     <Uploads01UI
       onClickImage={onClickImage}
       onChangeFile={onChangeFile}
       fileRef={fileRef}
-      imageUrl={props.imageUrl}
+      imageUrls={props.imageUrls}
     />
   );
 }

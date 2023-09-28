@@ -1,9 +1,10 @@
 import { ChangeEvent, RefObject } from 'react';
 import { Address } from 'react-daum-postcode';
+import { IQuery } from '../../../../../../../src/commons/types/generated/types';
 
 export interface IBoardWriteProps {
   isEdit: boolean;
-  data?: any;
+  data?: Pick<IQuery, 'fetchBoard'>;
 }
 
 export interface IUpdateBoardInputProps {
@@ -13,6 +14,7 @@ export interface IUpdateBoardInputProps {
   address?: string;
   addressDetail?: string;
   youtubeUrl?: string;
+  images?: string[];
   boardAddress?: {
     zipcode?: string;
     address?: string;

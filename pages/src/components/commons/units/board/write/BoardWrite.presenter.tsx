@@ -98,7 +98,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
             {props.imageUrls.map((el, index) => (
               <Uploads01
                 key={uuidv4()}
-                imageUrl={el}
+                imageUrls={el}
                 index={index}
                 onChangeFileUrls={props.onChangeFileUrls}
               />

@@ -5,7 +5,6 @@ import { Tooltip } from 'antd';
 import ReactPlayer from 'react-player';
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
-  console.log(props.data?.fetchBoard.images);
   return (
     <S.Detail>
       <S.Profile>
