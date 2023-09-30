@@ -5,6 +5,7 @@ import { IBOARDLISTUIProps } from './BoardList.types';
 export default function BoardListUI(props: IBOARDLISTUIProps): JSX.Element {
   return (
     <S.BoardListUI>
+      <input type="text" onChange={props.onChangeSearch} />
       <S.BoardListTable>
         <S.BoardListHeadNumber>번호</S.BoardListHeadNumber>
         <S.BoardListHeadTitle>제목</S.BoardListHeadTitle>

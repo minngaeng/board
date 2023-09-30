@@ -1,5 +1,8 @@
-import { MouseEvent } from 'react';
-import { IQuery, IQueryFetchBoardsArgs } from '../../../../../../../src/commons/types/generated/types';
+import { ChangeEvent, MouseEvent } from 'react';
+import {
+  IQuery,
+  IQueryFetchBoardsArgs,
+} from '../../../../../../../src/commons/types/generated/types';
 import { ApolloQueryResult } from '@apollo/client';
 
 export interface IBOARDLISTUIProps {
@@ -9,5 +12,6 @@ export interface IBOARDLISTUIProps {
   refetch: (
     variables?: Partial<IQueryFetchBoardsArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, 'fetchBoards'>>>;
-  dataBoardsCount:Pick<IQuery, "fetchBoardsCount"> | undefined
+  dataBoardsCount: Pick<IQuery, 'fetchBoardsCount'> | undefined;
+  onChangeSearch: (event: ChangeEvent<HTMLInputElement>) => void;
 }

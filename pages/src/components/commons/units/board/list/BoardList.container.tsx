@@ -2,12 +2,13 @@ import { useQuery } from '@apollo/client';
 import BoardListUI from './BoardList.presenter';
 import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from './BoardList.queries';
 import { useRouter } from 'next/router';
-import { MouseEvent, useState } from 'react';
+import { ChangeEvent, MouseEvent, useState } from 'react';
 import {
   IQuery,
   IQueryFetchBoardsArgs,
   IQueryFetchBoardsCountArgs,
 } from '../../../../../../../src/commons/types/generated/types';
+import _ from 'lodash';
 
 export default function BoardList() {
   const router = useRouter();
@@ -31,6 +32,16 @@ export default function BoardList() {
     router.push('/boards/new');
   };
 
+  const getDebounce = _.debounce((value: string) => {
+    refetch({ search: value, page: 1 });
+  }, 500);
+
+  const onChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    // setSearch(event.target.value);
+    // refetch({ search: event.target.value, page: 1 });
+    getDebounce(event.currentTarget.value);
+  };
+
   return (
     <BoardListUI
       data={data}
@@ -38,6 +49,7 @@ export default function BoardList() {
       onClickMoveBoardNew={onClickMoveBoardNew}
       refetch={refetch}
       dataBoardsCount={dataBoardsCount}
+      onChangeSearch={onChangeSearch}
     />
   );
 }
