@@ -1,11 +1,17 @@
 import Paginations01 from '../../../paginations/01/Paginations01.container';
+import Search01 from '../../../search/01/Search01.container';
 import * as S from './BoardList.style';
 import { IBOARDLISTUIProps } from './BoardList.types';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function BoardListUI(props: IBOARDLISTUIProps): JSX.Element {
   return (
     <S.BoardListUI>
-      <input type="text" onChange={props.onChangeSearch} />
+      <Search01
+        refetchBoardsCount={props.refetchBoardsCount}
+        refetch={props.refetch}
+        onChangeKeyword={props.onChangeKeyword}
+      />
       <S.BoardListTable>
         <S.BoardListHeadNumber>번호</S.BoardListHeadNumber>
         <S.BoardListHeadTitle>제목</S.BoardListHeadTitle>
@@ -16,7 +22,16 @@ export default function BoardListUI(props: IBOARDLISTUIProps): JSX.Element {
             <S.BoardListContents>
               {el._id.slice(-4).toUpperCase()}
             </S.BoardListContents>
-            <S.BoardListContents>{el.title}</S.BoardListContents>
+            <S.BoardListContents>
+              {el.title
+                .replaceAll(props.keyword, `@#$${props.keyword}@#$`)
+                .split('@#$')
+                .map((el) => (
+                  <S.TextToken key={uuidv4()} isMatched={props.keyword === el}>
+                    {el}
+                  </S.TextToken>
+                ))}
+            </S.BoardListContents>
             <S.BoardListContents>{el.writer}</S.BoardListContents>
             <S.BoardListContents>
               {el.createdAt.split('T')[0]}

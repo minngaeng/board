@@ -2,6 +2,7 @@ import { ChangeEvent, MouseEvent } from 'react';
 import {
   IQuery,
   IQueryFetchBoardsArgs,
+  IQueryFetchBoardsCountArgs,
 } from '../../../../../../../src/commons/types/generated/types';
 import { ApolloQueryResult } from '@apollo/client';
 
@@ -13,5 +14,13 @@ export interface IBOARDLISTUIProps {
     variables?: Partial<IQueryFetchBoardsArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, 'fetchBoards'>>>;
   dataBoardsCount: Pick<IQuery, 'fetchBoardsCount'> | undefined;
-  onChangeSearch: (event: ChangeEvent<HTMLInputElement>) => void;
+  refetchBoardsCount: (
+    variables?: Partial<IQueryFetchBoardsCountArgs> | undefined
+  ) => Promise<ApolloQueryResult<Pick<IQuery, 'fetchBoardsCount'>>>;
+  keyword: string;
+  onChangeKeyword: (value: string) => void;
+}
+
+export interface ITextTokenProps {
+  isMatched: boolean;
 }

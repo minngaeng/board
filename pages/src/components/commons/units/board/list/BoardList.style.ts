@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { ITextTokenProps } from './BoardList.types';
 
 export const BoardListUI = styled.div`
   margin: 10rem auto;
@@ -75,5 +76,9 @@ export const NewPost = styled.button`
   &:hover {
     background-color: #e2e2e2;
   }
+`;
+
+export const TextToken = styled.span`
+  color: ${(props:ITextTokenProps) => (props.isMatched ? 'red' : 'black')};
 `;
 
