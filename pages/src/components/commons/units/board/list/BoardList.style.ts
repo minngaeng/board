@@ -78,7 +78,12 @@ export const NewPost = styled.button`
   }
 `;
 
-export const TextToken = styled.span`
-  color: ${(props:ITextTokenProps) => (props.isMatched ? 'red' : 'black')};
+export const SearchContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 0 0 1rem 0;
 `;
 
+export const TextToken = styled.span`
+  color: ${(props: ITextTokenProps) => (props.isMatched ? 'red' : 'black')};
+`;

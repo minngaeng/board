@@ -7,11 +7,13 @@ import { v4 as uuidv4 } from 'uuid';
 export default function BoardListUI(props: IBOARDLISTUIProps): JSX.Element {
   return (
     <S.BoardListUI>
-      <Search01
-        refetchBoardsCount={props.refetchBoardsCount}
-        refetch={props.refetch}
-        onChangeKeyword={props.onChangeKeyword}
-      />
+      <S.SearchContainer>
+        <Search01
+          refetchBoardsCount={props.refetchBoardsCount}
+          refetch={props.refetch}
+          onChangeKeyword={props.onChangeKeyword}
+        />
+      </S.SearchContainer>
       <S.BoardListTable>
         <S.BoardListHeadNumber>번호</S.BoardListHeadNumber>
         <S.BoardListHeadTitle>제목</S.BoardListHeadTitle>
